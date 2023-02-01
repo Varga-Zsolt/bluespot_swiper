@@ -9,6 +9,7 @@ use Tests\TestCase;
 class SwipeControllerTest extends TestCase
 {
     use RefreshDatabase;
+    const BASE_URL  = '/api/swipe';
 
     public function setUp(): void
     {
@@ -19,7 +20,7 @@ class SwipeControllerTest extends TestCase
     public function test_swipe_endpoint_returns_201_created()
     {
         $response = $this->postJson(
-            '/api/swipe',
+            self::BASE_URL,
             [
                 "user_id" => 2,
                 "swiped_user_id" => 1,
@@ -39,7 +40,7 @@ class SwipeControllerTest extends TestCase
         ];
 
         $this->postJson(
-            '/api/swipe',
+            self::BASE_URL,
             $swipeData
         );
 
@@ -55,12 +56,12 @@ class SwipeControllerTest extends TestCase
         ];
 
         $this->postJson(
-            '/api/swipe',
+            self::BASE_URL,
             $swipeData
         );
 
         $response = $this->postJson(
-            '/api/swipe',
+            self::BASE_URL,
             $swipeData
         );
 
