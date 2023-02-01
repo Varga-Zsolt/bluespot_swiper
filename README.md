@@ -5,7 +5,6 @@ taptic Backend assessment TASK 2
 
 This application implements a part of the functionality for users to display profiles of other users and like or dislike them. If both users like each other, a pair is created.
 
-A user can swipe another user only once
 ## Models and Relationships
 The following models with relationships are needed to cover the functional description:
 
@@ -42,6 +41,7 @@ POST `/api/swipe`
 `action`
 
 #### Validation rules
+A user can swipe another user only once   
 `user_id` and `swiped_user_id` : required, integer, existing identifier in the database   
 `action` : required, enum: **like**, **dislike**"
 
