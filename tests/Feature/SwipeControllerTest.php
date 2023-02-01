@@ -9,7 +9,8 @@ use Tests\TestCase;
 class SwipeControllerTest extends TestCase
 {
     use RefreshDatabase;
-    const BASE_URL  = '/api/swipe';
+
+    const BASE_URL = '/api/swipe';
 
     public function setUp(): void
     {
@@ -66,5 +67,37 @@ class SwipeControllerTest extends TestCase
         );
 
         $response->assertStatus(422);
+    }
+
+    public function test_pair_created_successful()
+    {
+        $swipeData = [
+            "user_id" => 1,
+            "swiped_user_id" => 2,
+            "action" => "like"
+        ];
+
+        $swipeData2 = [
+            "user_id" => 2,
+            "swiped_user_id" => 1,
+            "action" => "like"
+        ];
+
+        $this->postJson(
+            self::BASE_URL,
+            $swipeData
+        );
+
+        $this->postJson(
+            self::BASE_URL,
+            $swipeData2
+        );
+
+        $this->assertDatabaseHas('pairs',
+            [
+                'user_a' => $swipeData2['user_id'],
+                'user_b' => $swipeData['user_id'],
+            ]
+        );
     }
 }
