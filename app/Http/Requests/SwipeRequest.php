@@ -41,4 +41,11 @@ class SwipeRequest extends FormRequest
             'action' => 'required|in:' . implode(',', Swipe::ALLOWED_ACTIONS)
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'user_id.unique' => 'couple user_id and swiped_user_id has to be unique.',
+        ];
+    }
 }
