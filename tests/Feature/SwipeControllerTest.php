@@ -47,7 +47,7 @@ class SwipeControllerTest extends TestCase
         $this->assertDatabaseHas('swipes', $swipeData);
     }
 
-    public function test_swipe_record_already_exists_in_database()
+    public function test_validation_swipe_record_already_exists_in_database()
     {
         $swipeData = [
             "user_id" => 2,
